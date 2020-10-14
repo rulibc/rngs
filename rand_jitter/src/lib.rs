@@ -185,7 +185,7 @@ impl EcState {
 
 // Custom Debug implementation that does not expose the internal state
 impl<F> fmt::Debug for JitterRng<F> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "JitterRng {{}}")
     }
 }
