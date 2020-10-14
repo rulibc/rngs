@@ -19,10 +19,16 @@ travis-ci = { repository = "rust-random/rngs" }
 appveyor = { repository = "rust-random/rngs" }
 
 [features]
+# Unstable feature to support being a libstd dependency
+rustc-dep-of-std = ["compiler_builtins", "core", "alloc"]
 serde1 = ["serde"]
 
 [dependencies]
-rand_core = { version = "0.5" }
+compiler_builtins = {version = "0.1", optional = true}
+core = {version = "1.0", optional = true, package = "rustc-std-workspace-core"}
+alloc = {version = "1.0", optional = true, package = "rustc-std-workspace-alloc"}
+
+rand_core = { version = "0.5.1", features = ["use_alloc", "rustc-dep-of-std"] }
 serde = { version = "1", features = ["derive"], optional = true }
 
 [dev-dependencies]
